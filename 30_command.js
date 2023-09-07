@@ -18,12 +18,13 @@ cmd_def('/echo', (args)=>{
   return args.join(' ')
 })
 
-cmd_def('/debug', (args)=>{
+cmd_def('/debug', (args, msg, payload)=>{
   return `debug info:
 version: #COMMIT_HASH
 update message: #COMMIT_MSG
 update time: #COMMIT_TIME
-
+message info:
+${JSON.stringify(msg, ' ', 2)}
 `
 })
 
@@ -31,9 +32,3 @@ update time: #COMMIT_TIME
 
 
 
-function test(){
-  console.log( cmd_run('/start') )
-  console.log(_command_defs)
-}
-
-test()

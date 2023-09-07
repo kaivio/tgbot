@@ -4,7 +4,7 @@
 // const account_id = ''
 // const api_key = ''
 // const worker_name = ''
-// export default { user, email, account_id, api_key, worker_name} 
+// export default { user, email, account_id, api_key, worker_name}
 
 import axios from "axios";
 import fs from "fs";
@@ -31,7 +31,10 @@ axios({
   url: `https://api.cloudflare.com/client/v4/accounts/${account_id}/workers/scripts/${worker_name}`
 })
 .then(res=>{
-    console.log(res.data);
+    let data = res.data
+    delete data.result.script
+    console.log(data)
+
 })
   .catch(err=>{
     console.log(err);
@@ -39,4 +42,4 @@ axios({
 .finally(()=>{
     console.log('// finally');
   })
-  
+

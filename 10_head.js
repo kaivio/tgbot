@@ -1,13 +1,13 @@
 /**
  * TG bot handle on cloudflare worker
- * 
- * 
+ *
+ *
  * Init Setting:
  *    curl https://api.telegram.org/bot$TG_BOT_TOKEN/setWebhook?url=$CF_WORKER_URL
  *    config woeker env TG_BOT_TOKEN
- * 
+ *
  * @ctime: #BUILD_TIME
- */ 
+ */
 
 
 addEventListener("fetch", event => {
@@ -16,12 +16,12 @@ addEventListener("fetch", event => {
 
 async function handleRequest(request) {
   if (request.method === "GET") {
-    return  new Response("worker alive! \nbuild at #BUILD_TIME") 
+    return  new Response("worker alive! \nbuild at #BUILD_TIME")
   }
   if (request.method === "POST") {
-    const payload = await request.json() 
+    const payload = await request.json()
     // Getting the POST request JSON payload
-    if ('message' in payload) { 
+    if ('message' in payload) {
       // Checking if the payload comes from Telegram
       const chatId = payload.message.chat.id
       const replay = onMessage(payload.message, payload)
@@ -29,7 +29,7 @@ async function handleRequest(request) {
       // TODO: 处理复合类型的消息回复
       const text = typeof replay == typeof ''? replay: replay.message.text
       const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?chat_id=${chatId}&text=${text}`
-      const data = await fetch(url).then(resp => resp.json()) 
+      const data = await fetch(url).then(resp => resp.json())
       // Calling the API endpoint to send a telegram message
     }
   }
@@ -38,14 +38,14 @@ async function handleRequest(request) {
 
 
 const _command_defs = {}
-function cmd_run(cmd){
+function cmd_run(cmd, msg, payload){
   let argv = cmd.split(/\s+/)
   cmd = argv[0]
   argv.shift()
 
   if(_command_defs[cmd]){
     try{
-      return _command_defs[cmd].run(argv)
+      return _command_defs[cmd].run(argv, msg, payload)
     }catch(e){
       return 'Error: '+e.toString()
     }
