@@ -1,7 +1,5 @@
-const simpleGit = require('simple-git');
+const gitlog = require("gitlog").default;
 const fs = require('fs')
-
-const git = simpleGit(process.cwd(), { binary: '.git' })
 
 function cat(file) {
   return fs.readFileSync(file, 'utf-8')
@@ -18,7 +16,6 @@ ${cat('30_command.js')}
 `
 
 
-const gitlog = require("gitlog").default;
 
 const options = {
   repo: __dirname,
