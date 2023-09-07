@@ -1,4 +1,4 @@
-// <.deploy.config.js>
+// <.deploy.config.mjs>
 // const user = ''
 // const email = ''
 // const account_id = ''

@@ -16,6 +16,9 @@ addEventListener("fetch", event => {
 })
 
 async function handleRequest(request) {
+  if (request.method === "GET") {
+    return  new Response("worker alive! ") 
+  }
   if (request.method === "POST") {
     const payload = await request.json() 
     // Getting the POST request JSON payload
