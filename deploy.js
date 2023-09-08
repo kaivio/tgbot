@@ -33,7 +33,7 @@ const {
 
 axios({
   method: 'PUT',
-  data: fs.readFileSync('worker.js', 'utf-8'),
+  data: fs.readFileSync('dist.js', 'utf-8'),
   headers: {
     "Content-Type": 'application/javascript',
     'Authorization': 'Bearer' + user,
@@ -42,7 +42,9 @@ axios({
   },
   url: `https://api.cloudflare.com/client/v4/accounts/${account_id}/workers/scripts/${worker_name}`
 }).then(res => {
-  console.log(res.data);
+  let data = res.data
+  delete data.result.script
+  console.log(data)
 }).catch(err => {
   console.log(err);
 }).finally(() => {
