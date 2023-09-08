@@ -38,12 +38,20 @@ cmd_def('/log', async (args, reply) => {
   let msg = args.join(' ')
   if (msg) {
     await KV.put(id, msg)
+    // await KV.put(id, msg, {expirationTtl: secondsFromNow})
     reply("已记录")
   }else{
-    let list = await KV.list({ prefix: "log:" })
-    reply(JSON.stringify(list, ' ', 2))
+    reply(JSON.stringify('list log...'))
+
+    let keys = (await KV.list({ prefix: "log:" })).keys
+    let s = ''
+    for(let k of keys){
+      s+= `[${k}] ` + await KV.get(k)
+    }
+    reply(s)
   }
 })
+
 
 
 
