@@ -1,4 +1,4 @@
-.deploy.config.mjs
+.deploy.config.*
 dist.js
 
 # Logs
