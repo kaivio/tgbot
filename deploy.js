@@ -42,7 +42,9 @@ axios({
   },
   url: `https://api.cloudflare.com/client/v4/accounts/${account_id}/workers/scripts/${worker_name}`
 }).then(res => {
-  console.log(res.data);
+  let data = res.data
+  delete data.result.script
+  console.log(data)
 }).catch(err => {
   console.log(err);
 }).finally(() => {
