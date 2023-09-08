@@ -1,6 +1,6 @@
 
 cmd_def('/start', async (args, reply) => {
-  return await reply( `欢迎！
+  return await reply(`欢迎！
 
   功能还在开发中，敬请期待。
   
@@ -40,14 +40,14 @@ cmd_def('/log', async (args, reply) => {
     await KV.put(id, msg)
     // await KV.put(id, msg, {expirationTtl: secondsFromNow})
     reply("已记录")
-  }else{
+  } else {
     reply(JSON.stringify('list log...'))
 
     let keys = (await KV.list({ prefix: "log:" })).keys
     let s = ''
-    for(let k of keys){
+    for (let k of keys) {
       k = k.name
-      s+= `[${k}] ` + await KV.get(k) + '\n'
+      s += `[${k}] ` + await KV.get(k) + '\n'
     }
     reply(s)
   }
