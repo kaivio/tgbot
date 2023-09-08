@@ -46,7 +46,8 @@ cmd_def('/log', async (args, reply) => {
     let keys = (await KV.list({ prefix: "log:" })).keys
     let s = ''
     for(let k of keys){
-      s+= `[${k}] ` + await KV.get(k)
+      k = k.name
+      s+= `[${k}] ` + await KV.get(k) + '\n'
     }
     reply(s)
   }
