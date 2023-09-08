@@ -44,4 +44,8 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+  
+  deploy-workflow:
+    jobs:
       - build_and_deploy
+  
