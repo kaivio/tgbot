@@ -81,3 +81,12 @@ function cmd_def(command, option, callback) {
     usage,
   }
 }
+
+
+function delay(sec){
+  return new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+      resolve('delay: '+sec)
+    }, sec)
+  })
+}

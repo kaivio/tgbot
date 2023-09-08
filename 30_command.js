@@ -49,18 +49,11 @@ cmd_def('/log', async (args, reply) => {
       k = k.name
       s += `[${k}] ` + await KV.get(k) + '\n'
     }
-    
+
     await delay(1)
     reply(s)
   }
 })
 
-function delay(sec){
-  return new Promise((resolve, reject)=>{
-    setTimeout(()=>{
-      resolve('delay: '+sec)
-    }, sec)
-  })
-}
 
 
