@@ -30,5 +30,16 @@ ${JSON.stringify(msg, ' ', 2)}
 
 
 
+cmd_def('/log', (args)=>{
+  let id = 'log:'+new Date().getTime()
+  let msg = args.join(' ')
+  if(msg){
+    KV.put(id, msg)
+    return "已记录"
+  }
+
+
+})
+
 
 
