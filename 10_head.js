@@ -37,7 +37,7 @@ async function handleRequest(request) {
       try {
         await onMessage(payload.message, reply, request)
       } catch (e) {
-        await reply('Error: '+e)
+        await reply('Error: ' + e)
       }
     }
   }
@@ -53,13 +53,15 @@ async function cmd_run(cmd, reply, req) {
   argv.shift()
 
   if (_command_defs[cmd]) {
-    try {
-      return await _command_defs[cmd].run(argv, reply, req)
-    } catch (e) {
-      return 'Error: ' + e.toString()
-    }
+    //   try {
+    return await _command_defs[cmd].run(argv, reply, req)
+    //   } catch (e) {
+    //      return await reply('Error: '+e)
+
+    //   }
   }
-  return 'command not found: ' + cmd
+
+  return await reply('command not found: ' + cmd)
 }
 
 function cmd_def(command, option, callback) {
