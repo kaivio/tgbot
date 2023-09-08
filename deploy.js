@@ -33,7 +33,7 @@ const {
 
 axios({
   method: 'PUT',
-  data: fs.readFileSync('worker.js', 'utf-8'),
+  data: fs.readFileSync('dist.js', 'utf-8'),
   headers: {
     "Content-Type": 'application/javascript',
     'Authorization': 'Bearer' + user,
