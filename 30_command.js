@@ -40,7 +40,7 @@ cmd_def('/log', async (args, reply) => {
     await KV.put(id, msg)
     reply("已记录")
   }else{
-    let list = await KV.list('log:')
+    let list = await KV.list({ prefix: "log:" })
     reply(JSON.stringify(list, ' ', 2))
   }
 })
