@@ -4,5 +4,5 @@ function onMessage(msg, payload){
     return cmd_run(text, msg, payload)
   }
 
-  return '现在无法此消息'
+  return '现在无法处理此消息'
 }
