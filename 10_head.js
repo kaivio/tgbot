@@ -21,6 +21,7 @@ async function handleRequest(request) {
   }
   if (request.method === "POST") {
     const payload = await request.json()
+    request.payload = payload
     // Getting the POST request JSON payload
     if ('message' in payload) {
       // Checking if the payload comes from Telegram

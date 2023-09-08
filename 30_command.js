@@ -20,14 +20,12 @@ cmd_def('/echo', async (args, reply) => {
 })
 
 cmd_def('/debug', async (args, reply, req) => {
-  const payload = await req.json()
-
   let res = reply(`debug info:
 version: #COMMIT_HASH
 update message: #COMMIT_MSG
 update time: #COMMIT_TIME
 message info:
-${JSON.stringify(payload, ' ', 2)}
+${JSON.stringify(req.payload, ' ', 2)}
 `)
   //
   return await res
