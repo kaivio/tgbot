@@ -38,9 +38,10 @@ cmd_def('/log', async (args, reply) => {
   let msg = args.join(' ')
   if (msg) {
     await KV.put(id, msg)
-    return reply("已记录")
+    reply("已记录")
   }else{
-    return reply("(列出所有记录)")
+    let list = await KV.list('log:')
+    reply(JSON.stringify(list, ' ', 2))
   }
 })
 
