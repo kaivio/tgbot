@@ -1,8 +1,9 @@
-function onMessage(msg, payload){
+async function onMessage(msg, reply, req){
   let {text} = msg
   if(text && text.startsWith('/')){
-    return cmd_run(text, msg, payload)
+    return await cmd_run(text, reply, req)
   }
 
-  return '现在无法处理此消息'
+ 
+  return await reply('现在无法处理此消息')
 }
