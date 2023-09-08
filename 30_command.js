@@ -1,21 +1,22 @@
 
-cmd_def('/start', (args) => {
-  return `欢迎！
+cmd_def('/start', async (args, reply) => {
+  return await reply( `欢迎！
 
-功能还在开发中，敬请期待。
-`
+  功能还在开发中，敬请期待。
+  
+  `)
 })
 
-cmd_def('/ping', (args, reply) => {
-  return `alive`
+cmd_def('/ping', async (args, reply) => {
+  return await reply(`alive`)
 })
 
-cmd_def('/test', (args, reply) => {
-  return `test alive`
+cmd_def('/test', async (args, reply) => {
+  return await reply(`test...`)
 })
 
-cmd_def('/echo', (args, reply) => {
-  return args.join(' ')
+cmd_def('/echo', async (args, reply) => {
+  return await reply(args.join(' '))
 })
 
 cmd_def('/debug', async (args, reply, req) => {
@@ -29,7 +30,7 @@ message info:
 ${JSON.stringify(payload, ' ', 2)}
 `)
   //
-  return res
+  return await res
 })
 
 
