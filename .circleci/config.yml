@@ -19,7 +19,7 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo hello"
-  build: # this can be any name you choose
+  build_and_deploy: # this can be any name you choose
     executor: node/default # use the default executor defined within the orb
     steps:
       - checkout
@@ -28,9 +28,14 @@ jobs:
       - run:
           command: node build.js
           name:  Build app
+      - run:
+          command: node deploy.js
+          name:  Deploy app
+      
       - persist_to_workspace:
           root: ~/project
           paths: .
+      
 
 
 # Orchestrate jobs using workflows
@@ -39,4 +44,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - build
+      - build_and_deploy
