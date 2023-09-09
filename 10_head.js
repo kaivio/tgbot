@@ -33,7 +33,7 @@ async function handleRequest(request) {
           text: content, // TODO: 处理复合类型的消息回复
         }
 
-        return await fetch(url,{
+        return await fetch(`${api_base}/sendMessage`,{
           method:'POST',
           body: JSON.stringify(data),
           headers:{
