@@ -25,14 +25,22 @@ async function handleRequest(request) {
     // Getting the POST request JSON payload
     if ('message' in payload) {
       // Checking if the payload comes from Telegram
-      const chatId = payload.message.chat.id
+      const chat_id = payload.message.chat.id
 
       const reply = async (content) => {
-        // TODO: 处理复合类型的消息回复
-        if (typeof content == 'string') {
-          let url = `${api_base}/sendMessage?chat_id=${chatId}&text=${content}`
-          return await fetch(url).then(resp => resp.json())
+        let data = {
+          chat_id,
+          text: content, // TODO: 处理复合类型的消息回复
         }
+
+        return await fetch(url,{
+          method:'POST',
+          body: JSON.stringify(data),
+          headers:{
+            "Content-Type": 'application/json'
+          }
+        }).then(resp => resp.json())
+        
 
       }
       try {
@@ -83,10 +91,10 @@ function cmd_def(command, option, callback) {
 }
 
 
-function delay(sec){
-  return new Promise((resolve, reject)=>{
-    setTimeout(()=>{
-      resolve('delay: '+sec)
+function delay(sec) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('delay: ' + sec)
     }, sec)
   })
 }
