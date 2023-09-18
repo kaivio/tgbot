@@ -10,7 +10,7 @@ cmd_def('/start', async (args, reply) => {
 cmd_def('/ping', async (args, reply) => {
   let [url, count = 10, step = 4] = args
   if (url) {
-    return tick(args, reply)
+    return await tick(args, reply)
   }
 
   return await reply(`alive`)
